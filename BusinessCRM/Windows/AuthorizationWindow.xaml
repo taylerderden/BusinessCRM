@@ -57,7 +57,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Зарегистрироваться" Style="{StaticResource titleText}"/>
                     <TextBlock Text="Заполните свои данные и создайте аккаунт чтобы войти в систему" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
-                    <Button Content="Зарегистрироваться" Style="{StaticResource button}"/>
+                    <Button Content="Зарегистрироваться" Style="{StaticResource button}" Click="btnRegistration_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -99,5 +99,6 @@
                 <Button x:Name="btnEnter" Content="Войти" Click="btnEnter_Click" Style="{StaticResource enter_button}"/>
             </StackPanel>
         </Border>
+        <Frame x:Name="FrameNav" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

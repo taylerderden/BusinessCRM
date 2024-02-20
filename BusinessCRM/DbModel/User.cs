@@ -15,6 +15,8 @@ public partial class User
 
     public long Employee { get; set; }
 
+    public string? Salt { get; set; }
+
     public virtual Employee EmployeeNavigation { get; set; } = null!;
 
     public virtual Role RoleNavigation { get; set; } = null!;

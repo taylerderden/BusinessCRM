@@ -36,10 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\2305594_access_key_password_privacy_security_icon.png" />
     <Resource Include="Resources\330395_account_avatar_boss_business_businessman_icon.ico" />
     <Resource Include="Resources\4115230_cancel_close_delete_icon.png" />

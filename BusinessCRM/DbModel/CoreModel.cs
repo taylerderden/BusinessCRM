@@ -9,7 +9,7 @@ public partial class CoreModel : DbContext
     private static CoreModel instance;
     public static CoreModel init()
     {
-        if (instance == null)
+        if(instance == null)
         {
             instance = new CoreModel();
         }
@@ -169,9 +169,12 @@ public partial class CoreModel : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("login");
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(200)
                 .HasColumnName("password");
             entity.Property(e => e.Role).HasColumnName("role");
+            entity.Property(e => e.Salt)
+                .HasMaxLength(100)
+                .HasColumnName("salt");
 
             entity.HasOne(d => d.EmployeeNavigation).WithMany(p => p.Users)
                 .HasForeignKey(d => d.Employee)

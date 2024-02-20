@@ -29,7 +29,7 @@ namespace BusinessCRM.Pages
             this.user = userDB;
             DataContext = user;
         }
-        public static Tuple <string, string> ComputeHash(string plainText, string hashAlgorithm, byte[] saltBytes)
+        public static Tuple<string, byte[]> ComputeHash(string plainText, string hashAlgorithm, byte[] saltBytes)
         {
             // Если соль не указана, генерируйте ее на лету.
             if (saltBytes == null)
@@ -112,8 +112,8 @@ namespace BusinessCRM.Pages
             // Возвратите результат.
             //return hashValue;
 
-            // Возврат кортежа с хешом пароля вместе с солью и отдельно хеша соли
-            return Tuple.Create(hashValue, hashSalt2);
+            // Возврат кортежа с хешом |пароля вместе с солью| и отдельно хеша |соли|
+            return Tuple.Create(hashValue, saltBytes);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
@@ -123,6 +123,7 @@ namespace BusinessCRM.Pages
                 var tyrple = registrationPage1.ComputeHash(tbPass.Text, "SHA256", null);
                 user.Password = tyrple.Item1;
                 user.Salt = tyrple.Item2;
+                byte[] a = user.Salt;
                 CoreModel.init().Users.Add(user);
             }
             CoreModel.init().SaveChanges();

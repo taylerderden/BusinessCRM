@@ -184,9 +184,8 @@ namespace BusinessCRM
                     User user = CoreModel.init().Users.FirstOrDefault(p => p.Login == tbLogin.Text);
 
                     string hashPassDB = user.Password;
-                    byte[] bdhashsalt = ASCIIEncoding.ASCII.GetBytes(user.Salt);
 
-                    string plaintext = AuthorizationWindow.ComputeHash(tbPassword.Password, "SHA256", ASCIIEncoding.ASCII.GetBytes(user.Salt));
+                    string plaintext = AuthorizationWindow.ComputeHash(tbPassword.Password, "SHA256", user.Salt);
 
                     if (hashPassDB == plaintext)
                     {

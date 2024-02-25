@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BusinessCRM.Windows"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    <Grid>
+        Title="AdminWindow" Height="780" Width="1280" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+    <Border>
         
-    </Grid>
+    </Border>
 </Window>

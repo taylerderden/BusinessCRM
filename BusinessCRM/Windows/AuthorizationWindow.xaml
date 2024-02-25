@@ -55,7 +55,11 @@
                 </Canvas>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Зарегистрироваться" Style="{StaticResource titleText}"/>
+                    <TextBlock Text="Зарегистрироваться" Style="{StaticResource titleText}" Foreground="#FFF6C60B" FontWeight="Bold">
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="1"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
                     <TextBlock Text="Заполните свои данные и создайте аккаунт чтобы войти в систему" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
                     <Button Content="Зарегистрироваться" Style="{StaticResource button}" Click="btnRegistration_Click"/>
                 </StackPanel>
@@ -63,9 +67,16 @@
         </Border>
         <Border Background="#FFFFD7A1" Grid.Column="1" MouseDown="Border_MouseDown">
             <StackPanel>
-                <TextBlock Text="Войти в систему через приложение" Style="{StaticResource titleText}" Foreground="#FFF9B03C" FontWeight="Bold" FontSize="36" Margin="35" FontStyle="Italic" TextWrapping="WrapWithOverflow"/>
+                <TextBlock Text="Войти в систему через приложение" Style="{StaticResource titleText}" Foreground="#FFF9B03C" FontWeight="Bold" FontSize="36" Margin="35" FontStyle="Italic" TextWrapping="WrapWithOverflow">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="5" ShadowDepth="2" Direction="315.4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
                     <Button Style="{StaticResource buttonCircle}">
+                        <Button.Effect>
+                            <DropShadowEffect ShadowDepth="2"/>
+                        </Button.Effect>
                         <Image Source="\Resources\4518725_telegram_icon.png" Width="26" Height="26"/>
                     </Button>
                 </StackPanel>

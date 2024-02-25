@@ -6,18 +6,24 @@
       xmlns:local="clr-namespace:BusinessCRM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
-      Title="registrationPage1">
+      Title="registrationPage1" Loaded="Page_Loaded">
 
     <Grid Background="#FFFFD7A1">
-        <TextBlock Text="Login" Margin="10,10,738,456" Padding="10"/>
-        <TextBlock Text="Pass" Margin="10,77,738,389" Padding="10"/>
-        <TextBlock Text="Role" Margin="10,137,738,329" Padding="10"/>
-        <TextBlock Text="Employee" Margin="10,201,717,265" Padding="10"/>
-
-        <TextBox x:Name="tbLogin" Text="{Binding Login}" Margin="22,43,642,428" />
-        <TextBox x:Name="tbPass" Margin="22,113,642,358" />
-        <TextBox x:Name="tbRole" Text="{Binding Role}" Margin="22,172,642,299" />
-        <TextBox x:Name="tbEmployee" Text="{Binding Employee}" Margin="22,250,642,221" />
-        <Button x:Name="btnRegister" Content="register" Margin="243,142,452,333" Click="btnRegister_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="213*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Логин" Margin="10" Padding="10, 0" Style="{StaticResource normalText}" Foreground="Orange" Width="168"/>
+            <TextBox x:Name="tbLogin" Text="{Binding Login}" Margin="200, 0, 200, 0"/>
+            <TextBlock Text="Пароль" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
+            <PasswordBox x:Name="pbPass" Margin="200, 0, 200, 0" />
+            <TextBlock Text="Роль" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
+            <ComboBox x:Name="cbRole" Margin="200, 0, 200, 0" SelectedItem="{Binding Role}" DisplayMemberPath="Name"/>
+            <TextBlock Text="Работник" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
+            <ComboBox x:Name="cbEmployee" Text="{Binding Employee}" Margin="200, 0, 200, 0" />
+        </StackPanel>
+        <Button x:Name="btnRegister" Grid.Row="1" Content="зарегистрироваться" Margin="10" Click="btnRegister_Click" Style="{StaticResource enter_button}" FontWeight="Bold"/>
+        <Button x:Name="btnBack" Grid.Row="1" Content="←" Margin="10,14,742,14" Click="btnBack_Click" Style="{StaticResource buttonCircle}" FontWeight="Bold" FontSize="15"/>
     </Grid>
 </Page>

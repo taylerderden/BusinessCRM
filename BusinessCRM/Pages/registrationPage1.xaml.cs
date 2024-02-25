@@ -67,7 +67,6 @@ namespace BusinessCRM.Pages
             for (int i = 0; i < saltBytes.Length; i++)
                 plainTextWithSaltBytes[plainTextBytes.Length + i] = saltBytes[i];
 
-
             HashAlgorithm hash;
 
             // Убедитесь, что указано имя алгоритма хэширования.
@@ -118,18 +117,37 @@ namespace BusinessCRM.Pages
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            if (user.Id == 0)
+            if (tbLogin.Text != null && pbPass.Password != null && cbRole.Text != null && cbEmployee.Text != null)
             {
-                var tyrple = registrationPage1.ComputeHash(tbPass.Text, "SHA256", null);
-                user.Password = tyrple.Item1;
-                user.Salt = tyrple.Item2;
-                byte[] a = user.Salt;
-                CoreModel.init().Users.Add(user);
+                User user = CoreModel.init().Users.FirstOrDefault(p => p.Login == tbLogin.Text);
+                if (user.Id == null)
+                {
+                    var tyrple = registrationPage1.ComputeHash(pbPass.Password, "SHA256", null);
+                    user.Password = tyrple.Item1;
+                    user.Salt = tyrple.Item2;
+                    //byte[] a = user.Salt;
+                    CoreModel.init().Users.Add(user);
+                    CoreModel.init().SaveChanges();
+                    MessageBox.Show("Success!");
+                    this.Content = null; //закрывает page и возвращает на окно авторизации
+                }
+                else
+                    MessageBox.Show("Пользователь с таким логином уже существует!");
+                
             }
-            CoreModel.init().SaveChanges();
-            MessageBox.Show("Success!");
-            //NavigationService.GoBack();
+            else
+                MessageBox.Show("Заполните все данные!");
+            
         }
 
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = null;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = this;
+        }
     }
 }

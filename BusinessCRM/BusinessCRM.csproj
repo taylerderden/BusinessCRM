@@ -14,6 +14,13 @@
     <None Remove="Resources\4115230_cancel_close_delete_icon.png" />
     <None Remove="Resources\4518725_telegram_icon.png" />
     <None Remove="Resources\9102304_account_user_profile_avatar_group_icon.png" />
+    <None Remove="Resources\Images\purchase.png" />
+    <None Remove="Resources\Images\return.png" />
+    <None Remove="Resources\Images\sale.png" />
+    <None Remove="Resources\Images\u1.png" />
+    <None Remove="Resources\Images\u2.png" />
+    <None Remove="Resources\Images\u3.png" />
+    <None Remove="Resources\Images\u4.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -41,6 +50,13 @@
     <Resource Include="Resources\4115230_cancel_close_delete_icon.png" />
     <Resource Include="Resources\4518725_telegram_icon.png" />
     <Resource Include="Resources\9102304_account_user_profile_avatar_group_icon.png" />
+    <Resource Include="Resources\Images\purchase.png" />
+    <Resource Include="Resources\Images\return.png" />
+    <Resource Include="Resources\Images\sale.png" />
+    <Resource Include="Resources\Images\u1.png" />
+    <Resource Include="Resources\Images\u2.png" />
+    <Resource Include="Resources\Images\u3.png" />
+    <Resource Include="Resources\Images\u4.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +72,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\imgProducts\" />
   </ItemGroup>
 
 </Project>

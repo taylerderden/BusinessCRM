@@ -19,9 +19,9 @@
             <TextBlock Text="Пароль" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
             <PasswordBox x:Name="pbPass" Margin="200, 0, 200, 0" />
             <TextBlock Text="Роль" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
-            <ComboBox x:Name="cbRole" Margin="200, 0, 200, 0" SelectedItem="{Binding Role}" DisplayMemberPath="Name"/>
+            <ComboBox x:Name="cbRole" Margin="200, 0, 200, 0" ItemsSource="{Binding Source = Role}" DisplayMemberPath="Name" Foreground="Black"/>
             <TextBlock Text="Работник" Margin="10" Padding="10" Style="{StaticResource normalText}" Foreground="Orange"/>
-            <ComboBox x:Name="cbEmployee" Text="{Binding Employee}" Margin="200, 0, 200, 0" />
+            <ComboBox x:Name="cbEmployee" ItemsSource="{Binding Source = Employee}" DisplayMemberPath="LastName" Margin="200, 0, 200, 0" Foreground="Black"/>
         </StackPanel>
         <Button x:Name="btnRegister" Grid.Row="1" Content="зарегистрироваться" Margin="10" Click="btnRegister_Click" Style="{StaticResource enter_button}" FontWeight="Bold"/>
         <Button x:Name="btnBack" Grid.Row="1" Content="←" Margin="10,14,742,14" Click="btnBack_Click" Style="{StaticResource buttonCircle}" FontWeight="Bold" FontSize="15"/>

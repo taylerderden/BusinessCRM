@@ -1,4 +1,5 @@
 ﻿using BusinessCRM.DbModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,12 @@ namespace BusinessCRM.Pages
             InitializeComponent();
             this.user = userDB;
             DataContext = user;
+
+            List<Role> roles = CoreModel.init().Roles.ToList();
+            cbRole.ItemsSource = roles;
+
+            List<Employee> employees = CoreModel.init().Employees.ToList();
+            cbEmployee.ItemsSource = employees;
         }
         public static Tuple<string, byte[]> ComputeHash(string plainText, string hashAlgorithm, byte[] saltBytes)
         {
@@ -117,14 +124,20 @@ namespace BusinessCRM.Pages
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            if (tbLogin.Text != null && pbPass.Password != null && cbRole.Text != null && cbEmployee.Text != null)
+            if (tbLogin.Text != "" && pbPass.Password != "" && cbRole.Text != "" && cbEmployee.Text != "")
             {
-                User user = CoreModel.init().Users.FirstOrDefault(p => p.Login == tbLogin.Text);
-                if (user.Id == null)
+                User userLogin = CoreModel.init().Users.FirstOrDefault(p => p.Login == tbLogin.Text);
+                if (userLogin == null)
                 {
                     var tyrple = registrationPage1.ComputeHash(pbPass.Password, "SHA256", null);
+                    user.Login = tbLogin.Text;
                     user.Password = tyrple.Item1;
                     user.Salt = tyrple.Item2;
+                    Role role = CoreModel.init().Roles.FirstOrDefault(p => p.Name == cbRole.Text);
+                    user.Role = role.Id;
+                    Employee employee = CoreModel.init().Employees.FirstOrDefault(p => p.LastName == cbEmployee.Text);
+                    user.Employee = employee.Id;
+
                     //byte[] a = user.Salt;
                     CoreModel.init().Users.Add(user);
                     CoreModel.init().SaveChanges();

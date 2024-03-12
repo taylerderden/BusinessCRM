@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -52,11 +53,6 @@ namespace BusinessCRM
             {
                 textPassword.Visibility = Visibility.Visible;
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         //хеширование с солью
@@ -153,31 +149,34 @@ namespace BusinessCRM
             // Возвратите результат.
             return hashValue;
         }
-         private void btnEnter_Click(object sender, RoutedEventArgs e)
+        async private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(tbLogin.Text) && !string.IsNullOrEmpty(tbPassword.Password))
-            {             
+            {              
                 try
                 {
-                    // Create a request for the URL. // проверка подключения к интернету        
-                    HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://www.google.ru/");   //сюда любой домен     
-                    request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
-                    request.Timeout = 10000;
+                    await Task.Run(() =>
+                    {
+                        // Create a request for the URL. // проверка подключения к интернету        
+                        HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("http://www.google.ru/");   //сюда любой домен     
+                        request.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)";
+                        request.Timeout = 10000;
 
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    Stream ReceiveStream1 = response.GetResponseStream();
-                    StreamReader sr = new StreamReader(ReceiveStream1, true);
-                    string responseFromServer = sr.ReadToEnd();
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        Stream ReceiveStream1 = response.GetResponseStream();
+                        StreamReader sr = new StreamReader(ReceiveStream1, true);
+                        string responseFromServer = sr.ReadToEnd();
 
-                    response.Close();
+                        response.Close();
+                    });
 
                     User user = CoreModel.init().Users.FirstOrDefault(p => p.Login == tbLogin.Text);
-
+                                      
                     string hashPassDB = user.Password;
 
-                    string plaintext = AuthorizationWindow.ComputeHash(tbPassword.Password, "SHA256", user.Salt);
+                    string plaintext = AuthorizationWindow.ComputeHash(tbPassword.Password, "SHA256", user.Salt);                 
 
-                    if (hashPassDB == plaintext)
+                    if (hashPassDB == plaintext) 
                     {
                         if (user.Role == 1)
                         {
@@ -199,7 +198,7 @@ namespace BusinessCRM
                         }                      
                     }
                     else
-                        MessageBox.Show("Логин или пароль неверные!");
+                        MessageBox.Show("Логин или пароль неверные!");                   
                 }
                 catch (Exception)
                 {
@@ -215,14 +214,13 @@ namespace BusinessCRM
                 this.DragMove();
             }
         }
-
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
         }
         private void btnRegistration_Click(object sender, RoutedEventArgs e)
         {
-            FrameNav.Navigate(new registrationPage1(new User()));
+           FrameNav.Navigate(new registrationPage1(new User()));
         }
     }
 }

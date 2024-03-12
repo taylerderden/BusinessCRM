@@ -13,5 +13,14 @@ namespace BusinessCRM
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            DispatcherUnhandledException += App_DispatchedUnhandledException;
+        }
+        private void App_DispatchedUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Ошибка подключения к базе данных, пожалуйста проверьте подключение к Интернету." + "Если проблему решить не удалось обратитесь к администратору!");
+            e.Handled = true;
+        }
     }
 }

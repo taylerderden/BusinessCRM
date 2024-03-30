@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessCRM.DbModel;
+namespace BusinessCRM;
 
 public partial class Product
 {
@@ -17,7 +17,13 @@ public partial class Product
 
     public long? Supplier { get; set; }
 
-    public uint? Image { get; set; }
+    public long? CategoryId { get; set; }
+
+    public string? Image { get; set; }
+
+    public virtual Category? Category { get; set; }
 
     public virtual Supplier? SupplierNavigation { get; set; }
+
+    public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 }

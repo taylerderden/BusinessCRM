@@ -5,6 +5,8 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="\Windows\DirectorWindow.xaml">
     <Application.Resources>
+        <BitmapImage x:Key="NoPicture" UriSource="\Resources\Product\NoPicture.jpg"/>
+        
         <Style x:Key="titleText" TargetType="TextBlock">
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontFamily" Value="Condensed"/> 
@@ -31,6 +33,33 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Orange"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="LightYellow"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="buttonAdd" TargetType="Button">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#fdfefe"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="5">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -169,6 +198,7 @@
                     <Setter Property="Background" Value="#F7F6F4" />
                     <Setter Property="Foreground" Value="#FB7657" />
                 </Trigger>
+
             </Style.Triggers>
         </Style>
 
@@ -511,5 +541,13 @@
             <Setter Property="Template" Value="{StaticResource SliderHorizontal1}"/>
         </Style>
         <!--#endregion-->
+
+        <Style x:Key="cbStyle" TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Condensed"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Background" Value="Orange"/>
+        </Style>
+
+        
     </Application.Resources>
 </Application>

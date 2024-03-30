@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessCRM.DbModel;
+namespace BusinessCRM;
 
 public partial class Supplier
 {

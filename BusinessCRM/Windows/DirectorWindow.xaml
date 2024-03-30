@@ -8,13 +8,13 @@
         xmlns:uc="clr-namespace:BusinessCRM.UserControls"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="DirectorWindow" Height="780" Width="1280" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+        Title="DirectorWindow" Height="780" Width="1280" WindowStartupLocation="CenterScreen" >
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter" />
     </Window.Resources>
 
-    <Border CornerRadius="25" Padding="20" Background="#F7F6F4" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Padding="20" Background="#F7F6F4" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -69,7 +69,7 @@
                     <!--Menu Items-->
                     <TextBlock Text="Меню" Style="{StaticResource menuTitle}"/>
 
-                    <Button Style="{StaticResource menuButton}" Background="#F7F6F4" Foreground="#FB7657">
+                    <Button x:Name="btnMainPage" Style="{StaticResource menuButton}" Foreground="#FFFB7657">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Наши показатели" Style="{StaticResource menuButtonText}"/>
@@ -83,7 +83,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Style="{StaticResource menuButton}">
+                    <Button x:Name="btnTables" Style="{StaticResource menuButton}" Click="btnTables_Click">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Таблицы" Style="{StaticResource menuButtonText}"/>
@@ -184,8 +184,8 @@
 
                 <!--Card-->
                 <uc:InfoCard Grid.Column="0" Title="Оборот" SubTitle="В прошлом месяце ($2464)" Amount="3" Image="/Resources/Images/sale.png"/>
-                <uc:InfoCard Grid.Column="1" Title="Покупки" SubTitle="В прошлом месяце ($1405)" Amount="8" Image="/Resources/Images/purchase.png" />
-                <uc:InfoCard Grid.Column="2" Title="Возвраты" SubTitle="В прошлом месяце ($3100)" Amount="5" Image="/Resources/Images/return.png" />
+                <uc:InfoCard Grid.Column="1" Title="Доходы" SubTitle="В прошлом месяце ($1405)" Amount="8" Image="/Resources/Images/return.png" />
+                <uc:InfoCard Grid.Column="2" Title="Расходы" SubTitle="В прошлом месяце ($3100)" Amount="5" Image="/Resources/Images/purchase.png" />
 
             </Grid>
 
@@ -253,6 +253,47 @@
                 </Grid>
             </Border>
 
+            <!--Panel Tables-->
+            <Border x:Name="panelTables" Visibility="Hidden" CornerRadius="25" Grid.Row="1" Grid.RowSpan="2" Margin="0,24,0,0" >
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#FFFECB38" Offset="0"/>
+                        <GradientStop Color="#FB6161" Offset="0.8"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel>
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Сотрудники" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Сделки" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnProduct" Style="{StaticResource menuButton}" Click="btnProduct_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Товары" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Поставщики" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource menuButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="ClipboardFileOutline" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Клиенты" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
             <!--Right Section-->
             <Grid Grid.Column="2" Grid.RowSpan="3">
                 <Grid.RowDefinitions>
@@ -264,11 +305,10 @@
                 <Border Style="{StaticResource whiteBorder}">
                     <StackPanel>
                         <TextBlock Text="Список сотрудников" Style="{StaticResource titleTextDirector}"/>
-                        <TextBlock Text="Это данные о продажах с наибольшим доходом за этот месяц." TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText}"/>
+                        <TextBlock Text="Данные о наибольших продажах за этот месяц." TextWrapping="Wrap" Margin="0 10 0 10" Style="{StaticResource secondaryText}"/>
 
                         <uc:UserCard Title="Злобин Даниил" IsActive="True" UpPrice="$1256" DownPrice="$337" Image="/Resources/Images/u1.png"/>
                         <uc:UserCard Title="Рогожникова Яна" UpPrice="$1049" DownPrice="$789" Image="/Resources/Images/u3.png"/>
-
 
                     </StackPanel>
                 </Border>
@@ -328,7 +368,7 @@
                     </Grid>
                 </Border>
             </Grid>
-
+            <Frame x:Name="FrameNav" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="20,0,0,0"/>
         </Grid>
     </Border>
 </Window>

@@ -21,6 +21,8 @@
     <None Remove="Resources\Images\u2.png" />
     <None Remove="Resources\Images\u3.png" />
     <None Remove="Resources\Images\u4.png" />
+    <None Remove="Resources\Product\NoPicture.jpg" />
+    <None Remove="Resources\Product\sergi.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +59,8 @@
     <Resource Include="Resources\Images\u2.png" />
     <Resource Include="Resources\Images\u3.png" />
     <Resource Include="Resources\Images\u4.png" />
+    <Resource Include="Resources\Product\NoPicture.jpg" />
+    <Resource Include="Resources\Product\sergi.jpg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BusinessCRM.DbModel;
+namespace BusinessCRM;
 
 public partial class Employee
 {
@@ -20,6 +20,8 @@ public partial class Employee
     public string? Phone { get; set; }
 
     public string? Email { get; set; }
+
+    public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 
     public virtual ICollection<User> Users { get; set; } = new List<User>();
 }
